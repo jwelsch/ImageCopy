@@ -2,6 +2,7 @@
 using CommandLineLib;
 using FileCopyLib;
 using ExifLib;
+using System.IO;
 
 namespace ImageCopy
 {
@@ -15,17 +16,27 @@ namespace ImageCopy
          {
             var arguments = commandLine.Parse( args );
 
+            var sorter = new Sorter( arguments );
             var copier = new FileCopier();
             copier.NextFile += ( sender, e ) =>
                {
-                  using ( var reader = new ExifReader( e.SourceFile ) )
-                  {
-                     DateTime dateTaken;
-                     if ( reader.GetTagValue<DateTime>( ExifTags.DateTimeDigitized, out dateTaken ) )
-                     {
-                     }
-                  }
+                  e.TargetFile = sorter.Sort( e.SourceFile, e.TargetFile );
                };
+
+            FileCopyOptions fileCopyOptions = new FileCopyOptions()
+            {
+              CreateTarget = true,
+              Difference = FileDifference.Ignore,
+              FilePathFilter = new WhitelistFilePathFilter( new string[] { "*.jpg", "*.jpeg", "*.jpe", "*.tif" } ),
+              Overwrite = arguments.Overwrite,
+              Recursive = true,
+              SourcePath = arguments.Source,
+              TargetDirectory = arguments.Target
+            };
+
+            Console.WriteLine( "Starting copy..." );
+
+            var result = copier.Copy( fileCopyOptions );
          }
          catch ( CommandLineException ex )
          {

@@ -3,12 +3,7 @@ using CommandLineLib;
 
 namespace ImageCopy
 {
-   internal enum SortCriteria
-   {
-      DateTaken
-   }
-
-   internal class CLArguments
+   internal class CLArguments : ISorterOptions
    {
       [DirectoryPathCompound( "-source", MustExist = true, Description = "Path to the directory containing image files to copy." )]
       public string Source
@@ -31,7 +26,14 @@ namespace ImageCopy
          private set;
       }
 
-      [Switch( "-overwrite", Optional = true, Description = "Include to automatically overwrite files in the target directory." )]
+      [EnumCompound( "-dateFormat", Optional = true, Description = "Specifies the format of the date in the directory name.  Default is YMD." )]
+      public DateFormat DateFormat
+      {
+         get;
+         private set;
+      }
+
+      [Switch( "-overwrite", Optional = true, Description = "Include to automatically overwrite files in the target directory.  Default is to not overwrite." )]
       public bool Overwrite
       {
          get;
