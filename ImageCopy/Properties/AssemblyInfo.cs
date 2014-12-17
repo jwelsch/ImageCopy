@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle( "ImageCopy" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "TechSmith Corporation" )]
+[assembly: AssemblyCompany( "DigiModern Software Solutions Incorporated" )]
 [assembly: AssemblyProduct( "ImageCopy" )]
-[assembly: AssemblyCopyright( "Copyright © TechSmith Corporation 2014" )]
+[assembly: AssemblyCopyright( "Copyright © DigiModern Software Solutions Incorporated 2014" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion( "1.0.3.1" )]
-[assembly: AssemblyFileVersion( "1.0.3.1" )]
+[assembly: AssemblyVersion( "1.0.0.1" )]
+[assembly: AssemblyFileVersion( "1.0.0.1" )]
