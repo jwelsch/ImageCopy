@@ -19,6 +19,13 @@ namespace ImageCopy
          private set;
       }
 
+      [Switch( "-recursive", Optional = true, Description = "Include to recurse through subdirectories contained in \"-source\"." )]
+      public bool Recursive
+      {
+         get;
+         private set;
+      }
+
       [EnumCompound( "-sort", Description = "Criteria by which to sort the images." )]
       public SortCriteria Sort
       {
@@ -35,6 +42,13 @@ namespace ImageCopy
 
       [Switch( "-overwrite", Optional = true, Description = "Include to automatically overwrite files in the target directory.  Default is to not overwrite." )]
       public bool Overwrite
+      {
+         get;
+         private set;
+      }
+
+      [Switch( "-noChange", Optional = true, Description = "Instructs the program to do everything except do the actual copy.  Useful to testing the output before actually copying files." )]
+      public bool NoChange
       {
          get;
          private set;

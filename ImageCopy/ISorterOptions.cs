@@ -23,10 +23,5 @@ namespace ImageCopy
       {
          get;
       }
-
-      bool Overwrite
-      {
-         get;
-      }
    }
 }

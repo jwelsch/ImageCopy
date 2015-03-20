@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F842687-9A62-43AA-8C43-DCD9D33371E8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{45830335-15B2-4F7D-A64E-7BF6B0255D2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ImageCopy</RootNamespace>
-    <AssemblyName>ImageCopy</AssemblyName>
+    <RootNamespace>FileCopyLib</RootNamespace>
+    <AssemblyName>FileCopyLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,13 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLineLib, Version=1.0.3.314, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CommandLineLib-1.0.3.316\CommandLineLib.dll</HintPath>
-    </Reference>
-    <Reference Include="ExifLib">
-      <HintPath>..\packages\ExifLib.1.6.3.0\lib\net45\ExifLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,32 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CLArguments.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="ISorterOptions.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AsyncFileStreamDataCopier.cs" />
+    <Compile Include="BaseCollection.cs" />
+    <Compile Include="ExecuteProcess.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FileDataCopier.cs" />
+    <Compile Include="FileCopyException.cs" />
+    <Compile Include="FileCopyOptions.cs" />
+    <Compile Include="FileCopyResult.cs" />
+    <Compile Include="FileCopyThread.cs" />
+    <Compile Include="FileDataCopyResult.cs" />
+    <Compile Include="FileDataInfo.cs" />
+    <Compile Include="FileEx.cs" />
+    <Compile Include="FilePathFilter.cs" />
+    <Compile Include="FileStreamDataCopier.cs" />
+    <Compile Include="FileCopier.cs" />
+    <Compile Include="IFileDataCopier.cs" />
+    <Compile Include="LogSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sorter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-    <None Include="postbuild.bat" />
-    <None Include="prebuild.bat" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FileCopyLib\FileCopyLib.csproj">
-      <Project>{45830335-15b2-4f7d-a64e-7bf6b0255d2e}</Project>
-      <Name>FileCopyLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>"$(ProjectDir)prebuild.bat" "$(ConfigurationName)" "$(SolutionDir)" "$(ProjectDir)"</PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>"$(ProjectDir)postbuild.bat" "$(ConfigurationName)" "$(SolutionDir)" "$(ProjectDir)" "$(TargetDir)" "$(TargetPath)" "$(TargetName)"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
